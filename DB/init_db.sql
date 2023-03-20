@@ -1,0 +1,41 @@
+CREATE DATABASE Hotel;
+USE Hotel;
+
+
+create Table room(
+room_number int primary key, 
+room_type varchar(50), 
+price Decimal (10, 2), 
+is_available boolean
+);
+
+Create Table customer(
+id int primary key, 
+name varchar(50), 
+email varchar(50),
+phone varchar(50), 
+address varchar(200)
+);
+
+Create Table booking (
+    id int primary key, 
+    room_number int, 
+    customer_id int, 
+    checkin_date date,
+    chickout_date date, 
+    total_price decimal(10,2),
+    FOREIGN KEY (room_number) REFERENCES room(room_number),
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+
+);
+
+Create Table payment(
+
+id int primary key,
+booking_id int, 
+payment_date date,
+payment_method varchar(50), 
+amount decimal(10, 2),
+FOREIGN key (booking_id) references booking(id)
+
+);
